@@ -1,4 +1,5 @@
-﻿@model HomeViewModel
+```cshtml
+@model HomeViewModel
 @{
     ViewData["Title"] = "Home";
     var waNumber = Config["Store:WhatsApp"];
@@ -6,10 +7,11 @@
     var address = Config["Store:Address"];
     var mapsUrl = Config["Store:MapsUrl"];
 
-    // Sample photos from Unsplash (free licence). Replace with your own shop photos later.
-    string Photo(string id, int width) => $"https://unsplash.com/photos/{id}/download?force=true&w={width}";
+    string Photo(string id, int width) =>
+        $"https://unsplash.com/photos/{id}/download?force=true&w={width}";
+
     var gallery = new[]
-{
+    {
         ("/images/store/store-1.jpg", "Our store"),
         ("/images/store/store-2.jpg", "Fresh groceries"),
         ("/images/store/store-3.jpg", "Daily essentials"),
@@ -39,7 +41,10 @@
 @if (Model.Offers.Any())
 {
     <section id="offers" class="section">
-        <div class="head reveal"><span class="eyebrow">Save more</span><h2>Special Offers</h2></div>
+        <div class="head reveal">
+            <span class="eyebrow">Save more</span>
+            <h2>Special Offers</h2>
+        </div>
         <div class="marquee">
             <div class="offers">
                 @for (int i = 0; i < 2; i++)
@@ -60,7 +65,10 @@
 
 <section class="section line">
     <div class="wrap">
-        <div class="head reveal"><span class="eyebrow">Our store</span><h2>A Look Inside</h2></div>
+        <div class="head reveal">
+            <span class="eyebrow">Our store</span>
+            <h2>A Look Inside</h2>
+        </div>
         <div class="gallery reveal">
             @foreach (var g in gallery)
             {
@@ -73,13 +81,19 @@
         </div>
     </div>
 </section>
+
 <section id="products" class="section">
-    <div class="head reveal"><span class="eyebrow">Our shelves</span><h2>Shop by Category</h2></div>
+    <div class="head reveal">
+        <span class="eyebrow">Our shelves</span>
+        <h2>Shop by Category</h2>
+    </div>
+
     <div class="chips">
         <a class="chip active" asp-controller="Products" asp-action="Index">All</a>
         @foreach (var c in Model.Categories)
         {
-            <a class="chip" asp-controller="Products" asp-action="Index" asp-route-categoryId="@c.Id">@c.Name</a>
+            <a class="chip" asp-controller="Products" asp-action="Index"
+               asp-route-categoryId="@c.Id">@c.Name</a>
         }
     </div>
 
@@ -103,11 +117,13 @@
 
 <section class="section line">
     <div class="wrap about reveal">
-        @await Component.InvokeAsync("OwnerCard")
         <div>
             <span class="eyebrow">About us</span>
             <h2>Your neighbourhood store you can trust</h2>
-            <p>@storeName serves Bhanywali, Sialkot and the surrounding villages with good products, honest prices and friendly service every day.</p>
+            <p>
+                @storeName serves Bhanywali, Sialkot and the surrounding villages
+                with good products, honest prices and friendly service every day.
+            </p>
             <ul>
                 <li>Daily-use groceries and household items</li>
                 <li>Trusted brands at fair prices</li>
@@ -118,7 +134,10 @@
 </section>
 
 <section class="section">
-    <div class="head reveal"><span class="eyebrow">Find us</span><h2>Visit Our Store</h2></div>
+    <div class="head reveal">
+        <span class="eyebrow">Find us</span>
+        <h2>Visit Our Store</h2>
+    </div>
     <div class="box">
         <h3>@address</h3>
         <p>Open daily: 8:00 AM - 10:00 PM</p>
@@ -131,3 +150,4 @@
     <p>Ask about prices, availability or offers. We reply on WhatsApp.</p>
     <a class="btn btn-wa" href="https://wa.me/@waNumber" target="_blank" rel="noopener">Chat on WhatsApp</a>
 </section>
+```
