@@ -1,18 +1,42 @@
-﻿@{
+```cshtml
+@{
     ViewData["Title"] = "About";
     var storeName = Config["Store:Name"];
+    var address = Config["Store:Address"];
+    var phone = Config["Store:Phone1"];
+    var waNumber = Config["Store:WhatsApp"];
 }
 
-<section class="section about">
-    @await Component.InvokeAsync("OwnerCard")
-    <div>
-        <span class="eyebrow">About us</span>
-        <h1 class="page-title">About @storeName</h1>
-        <p>@storeName serves Bhanywali, Sialkot and the surrounding villages with good products, honest prices and friendly service every day.</p>
-        <ul>
-            <li>Daily-use groceries and household items</li>
-            <li>Trusted brands at fair prices</li>
-            <li>Quick answers on WhatsApp</li>
-        </ul>
+<section class="section line">
+    <div class="wrap about">
+        <div>
+            <span class="eyebrow">About us</span>
+            <h1>Your neighbourhood store you can trust</h1>
+
+            <p>
+                @storeName serves Bhanywali, Sialkot and the surrounding
+                villages with quality products, fair prices and friendly service.
+            </p>
+
+            <h2>What We Offer</h2>
+            <ul>
+                <li>Daily-use groceries and household items</li>
+                <li>Beverages, snacks and personal care products</li>
+                <li>Trusted brands at fair prices</li>
+                <li>Quick customer support on WhatsApp</li>
+            </ul>
+
+            <h2>Visit Our Store</h2>
+            <p>@address</p>
+            <p>Call us: @phone</p>
+
+            <a class="btn btn-wa"
+               href="https://wa.me/@waNumber"
+               target="_blank"
+               rel="noopener">
+                Contact Us on WhatsApp
+            </a>
+        </div>
     </div>
 </section>
+```
